@@ -1,0 +1,12 @@
+docker kill local_registry || true
+docker run -p 5000:5000 -d --rm --name local_registry registry:2
+
+# Create a provisioned metabolomics image
+ANSIBLE_FORCE_COLOR=1 packer build -color=false packer.json
+
+# Build the Girder image
+SINGULARITY_NOHTTPS=yes sudo -E singularity build metabolomics.simg.0 Singularity.metabolomics
+mv -f metabolomics.simg.0 metabolomics.simg
+
+# Tear down the local docker registry
+docker kill local_registry || true
