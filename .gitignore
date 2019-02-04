@@ -1,3 +1,5 @@
 *.simg
 *~
 *.retry
+*.Rda
+*.pdf

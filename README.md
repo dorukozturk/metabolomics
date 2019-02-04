@@ -47,3 +47,9 @@ Simply run:
 
 We just ran a simple R script and the script requires a data file as an argument (which is data_original.csv) file.
 This should produce a pdf file in your current directory which should have a plot.
+
+Also to call some of the functions that MetaboAnalystR library provides check the other R example.
+
+```sh
+singularity exec metabolomics.simg Rscript examples/metaboanalyst.R
+```
