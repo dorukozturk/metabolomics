@@ -1,7 +1,7 @@
 library("MetaboAnalystR");
 
 mSet<-InitDataObjects("conc", "stat", FALSE);
-mSet<-Read.TextData(mSet, "./examples/data_original.csv", "rowu", "disc");
+mSet<-Read.TextData(mSet, "https://www.metaboanalyst.ca/MetaboAnalyst/resources/data/human_cachexia.csv", "rowu", "disc");
 mSet<-SanityCheckData(mSet);
 mSet<-RemoveMissingPercent(mSet, percent=0.5);
 mSet<-ImputeVar(mSet, method="min")

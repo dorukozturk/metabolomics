@@ -8,15 +8,14 @@ action "Build" {
   args = "build -f devops/Dockerfile -t dozturk2/metabolomics:latest ."
 }
 
-action "Publish Filter" {
+action "Login" {
   needs = ["Build"]
-  uses = "actions/bin/filter@master"
-  args = "branch master"
+  uses = "actions/docker/login@master"
+  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
 
 action "Publish" {
-  needs = ["Build"]
-  uses = "actions/action-builder/docker@master"
-  runs = "make"
-  args = "publish"
+  needs = ["Login"]
+  uses = "actions/docker/cli@master"
+  args = "push dozturk2/metabolomics:latest"
 }

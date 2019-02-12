@@ -36,6 +36,7 @@ mv -f metabolomics.simg.0 metabolomics.simg
 ```
 
 Tear down the local docker registry
+
 ```sh
 docker kill local_registry || true
 ```
