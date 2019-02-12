@@ -15,9 +15,29 @@ Latest versions of prerequisites should be ok to install.
 
 After all the preprequisites are installed run:
 
+Create a local registry for docker.
+
 ```sh
 cd devops
-./build
+docker run -p 5000:5000 -d --rm --name local_registry registry:2
+```
+
+Create a provisioned metabolomics Docker image
+
+```sh
+ANSIBLE_FORCE_COLOR=1 packer build -color=false packer.json
+```
+
+Build the Metabolomics image from the Docker image
+
+```sh
+SINGULARITY_NOHTTPS=yes sudo -E singularity build metabolomics.simg.0 Singularity.metabolomics
+mv -f metabolomics.simg.0 metabolomics.simg
+```
+
+Tear down the local docker registry
+```sh
+docker kill local_registry || true
 ```
 
 This should place the __singularity.img__ file which is a singularity image.
