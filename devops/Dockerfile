@@ -1,4 +1,4 @@
-FROM r-base
+FROM opencpu/rstudio
 
 RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
@@ -29,3 +29,5 @@ RUN R -e 'install.packages("XML");' && \
     R -e 'BiocManager::install("sva", version = "3.8")'
 
 RUN R -e 'install.packages("devtools"); library(devtools); devtools::install_github("xia-lab/MetaboAnalystR")'
+
+CMD service cron start && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
