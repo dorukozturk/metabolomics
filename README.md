@@ -55,6 +55,18 @@ cd devops
 docker build -t metabolomics .
 ```
 
+### Pulling the Docker Image
+
+It takes around 50 minutes to build the image.
+It might be more convenient to pull it from Dockerhub.
+
+```sh
+docker pull dozturk2/metabolomics:latest
+```
+
+There are github actions set for pushing the docker image
+so it will be periodically updated on Dockerhub.
+
 ### Running R Scripts Against the Container
 
 After we build the images we can run R scripts against the container.
